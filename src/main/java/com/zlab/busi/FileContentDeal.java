@@ -30,7 +30,6 @@ public class FileContentDeal {
         try {
             in = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
             String content;
-            //读取压缩文件里的内容
 
             while ((content = in.readLine()) != null) {
 
