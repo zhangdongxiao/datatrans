@@ -23,7 +23,16 @@ public class ContentAnalysis {
     public Map<String, Object> analysis(String content) {
         Map<String, Object> out = new HashMap<>();
 
-        String[] cmds = content.split("ksh");
+        String[] cmds = new String[2];
+
+        if (content.contains("ksh") && !content.contains("/ksh")) {
+            cmds = content.split("ksh");
+        } else {
+            String b = content.substring(0, content.lastIndexOf("*") + 1);
+            String c = content.substring(content.lastIndexOf("*") + 1);
+            cmds[0] = b;
+            cmds[1] = c;
+        }
 
         log.info("cmds = {}", Arrays.toString(cmds));
 
@@ -33,30 +42,65 @@ public class ContentAnalysis {
 
         //00 2 * * *  分 小时 日 月 星期
         String freq = "";
+        String remark = "";
 
         String[] times = cmds[0].trim().split("\\s+");
 
         log.info("times length = {}", times.length);
 
         if (times.length > 0) {
+
+            boolean isMin = false, isH = false, isDay = false, isMth = false;
+
             if (!times[0].equals("*")) {
-                freq = "分";
+                freq = times[0] + "分";
+                isMin = true;
             }
             if (!times[1].equals("*")) {
-                freq = "时";
+                freq = times[1] + "时";
+
+                isH = true;
+
+                if (isMin) {
+                    freq = "固定" + times[0] + "分" + times[1] + "时";
+                }
+
             }
             if (!times[2].equals("*")) {
-                freq = "日";
+                freq = times[2] + "日";
+
+                isDay = true;
+
+                if (isH) {
+                    freq = "固定" + times[0] + "分" + times[1] + "时" + times[2] + "日";
+                    remark = "指定日执行";
+                }
+
             }
             if (!times[3].equals("*")) {
-                freq = "月";
+                freq = times[3] + "月";
+
+                isMth = true;
+
+                if (isDay) {
+                    freq = "固定" + times[0] + "分" + times[1] + "时" + times[2] + "日" + times[3] + "月";
+                    remark = "指定日期执行";
+                }
+
             }
             if (!times[4].equals("*")) {
-                freq = "周";
+                freq = times[4] + "周";
+
+                if (isMth) {
+                    freq = "固定" + times[0] + "分" + times[1] + "时" + times[2] + "日" + times[3] + "月" + times[4] + "周";
+                    remark = "指定星期执行";
+                }
+
             }
         }
 
         out.put("Freq", freq);
+        out.put("Remark", remark);
 
         log.info("out = {}", out);
 
@@ -65,7 +109,8 @@ public class ContentAnalysis {
 
     public static void main(String[] args) {
         ContentAnalysis contentAnalysis = new ContentAnalysis();
-        contentAnalysis.analysis("50 8 1,23 * * ksh /crmbob/crmrptb/prodmng/bin/prcSendSMS/CRON_AUTOMODSENDSUM.sh");
+        contentAnalysis.analysis("02,12,22,32,42,52 * * * *  /usr/bin/ksh /crmbob/crmrptb/interface/ifCRMDataInDBCen/bin/ifDIstart.sh");
+
     }
 
 }

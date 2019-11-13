@@ -27,15 +27,13 @@ public class FileContentDeal {
 
     public Data fileContentDeal(Data data) {
 
-        if(contentAnalysis == null){
+        if (contentAnalysis == null) {
             contentAnalysis = new ContentAnalysis();//兼容单独的main启动
         }
 
         String filePath = data.getFilePath() + data.getFileName();
 
         Data outdata = new Data();
-
-        BufferedWriter writer = null;
 
         BufferedReader in = null;
         try {
@@ -48,12 +46,18 @@ public class FileContentDeal {
 
                 log.info("@@@@@@@  file content = " + content);
 
+                if (content.contains("#")) {
+                    continue;
+                }
+
+                if (content.equals("")) {
+                    continue;
+                }
+
                 contentlist.add(contentAnalysis.analysis(content));
 
             }
-            writer.flush();
             in.close();
-            writer.close();
 
             if (contentlist.size() > 0) {
                 outdata.setFileContent(contentlist);
@@ -63,13 +67,7 @@ public class FileContentDeal {
             log.error("@@@@@@@@@@@@@  文件打开异常  @@@@@@@@@@@@");
             e.printStackTrace();
         } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+
             if (in != null) {
                 try {
                     in.close();

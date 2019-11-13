@@ -47,6 +47,11 @@ public class ConDataDeal {
 
         Data in = new Data();
 
+        in.setFilePath("/Users/dxz/Public/ProgramCodes/file/");
+        in.setOutPut("/Users/dxz/Public/ProgramCodes/file/");
+        in.setFileName("crontab_20191112");
+        in.setOutPutFileName(in.getFileName()+".xls");
+
         ConDataDeal conDataDeal = new ConDataDeal();
 
         conDataDeal.deal(in);
