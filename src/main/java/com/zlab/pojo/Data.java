@@ -1,6 +1,7 @@
 package com.zlab.pojo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author zhangdx
@@ -13,13 +14,13 @@ public class Data {
     private String lineContent;
     private String fileName;
     private String filePath;
-    private List<String> fileContent;
+    private List<Map<String, Object>> fileContent;
 
-    public List<String> getFileContent() {
+    public List<Map<String, Object>> getFileContent() {
         return fileContent;
     }
 
-    public void setFileContent(List<String> fileContent) {
+    public void setFileContent(List<Map<String, Object>> fileContent) {
         this.fileContent = fileContent;
     }
 
