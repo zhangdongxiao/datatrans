@@ -14,7 +14,25 @@ public class Data {
     private String lineContent;
     private String fileName;
     private String filePath;
+    private String outPut;
+    private String outPutFileName;
     private List<Map<String, Object>> fileContent;
+
+    public String getOutPut() {
+        return outPut;
+    }
+
+    public void setOutPut(String outPut) {
+        this.outPut = outPut;
+    }
+
+    public String getOutPutFileName() {
+        return outPutFileName;
+    }
+
+    public void setOutPutFileName(String outPutFileName) {
+        this.outPutFileName = outPutFileName;
+    }
 
     public List<Map<String, Object>> getFileContent() {
         return fileContent;

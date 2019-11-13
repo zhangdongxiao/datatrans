@@ -29,6 +29,10 @@ public class FileContentDeal {
 
     public Data fileContentDeal(Data data) {
 
+        if(contentAnalysis == null){
+            contentAnalysis = new ContentAnalysis();//兼容单独的main启动
+        }
+
         String filePath = data.getFilePath() + data.getFileName();
 
         Data outdata = new Data();
