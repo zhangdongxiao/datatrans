@@ -62,7 +62,7 @@ public class ContentAnalysis {
                 isH = true;
 
                 if (isMin) {
-                    freq = "固定" + times[0] + "分" + times[1] + "时";
+                    freq = "固定" + times[1] + "时" + times[0] + "分";
                 }
 
             }
@@ -72,7 +72,7 @@ public class ContentAnalysis {
                 isDay = true;
 
                 if (isH) {
-                    freq = "固定" + times[0] + "分" + times[1] + "时" + times[2] + "日";
+                    freq = "固定" + times[2] + "日" + times[1] + "时" + times[0] + "分";
                     remark = "指定日执行";
                 }
 
@@ -83,7 +83,7 @@ public class ContentAnalysis {
                 isMth = true;
 
                 if (isDay) {
-                    freq = "固定" + times[0] + "分" + times[1] + "时" + times[2] + "日" + times[3] + "月";
+                    freq = "固定" + times[3] + "月" + times[2] + "日" + times[1] + "时" + times[0] + "分";
                     remark = "指定日期执行";
                 }
 
@@ -92,7 +92,7 @@ public class ContentAnalysis {
                 freq = times[4] + "周";
 
                 if (isMth) {
-                    freq = "固定" + times[0] + "分" + times[1] + "时" + times[2] + "日" + times[3] + "月" + times[4] + "周";
+                    freq = "固定" + times[3] + "月" + times[4] + "周" + times[2] + "日" + times[1] + "时" + times[0] + "分";
                     remark = "指定星期执行";
                 }
 
