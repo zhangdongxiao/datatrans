@@ -1,4 +1,4 @@
-package com.zlab.pojo;
+package com.xlab.pojo;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package com.zlab.busi;
+package com.xlab.busi;
 
-import com.zlab.pojo.Data;
+import com.xlab.pojo.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

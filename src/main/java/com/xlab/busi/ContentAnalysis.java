@@ -1,4 +1,4 @@
-package com.zlab.busi;
+package com.xlab.busi;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
